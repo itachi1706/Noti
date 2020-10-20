@@ -315,7 +315,7 @@ class PushManager: NSObject, WebSocketDelegate, NSUserNotificationCenterDelegate
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         print("PushManager", "receive", text)
         
-        var message = JSON(parseJSON:text);
+        let message = JSON(parseJSON:text);
         
         if let type = message["type"].string {
             switch type {
@@ -419,7 +419,7 @@ class PushManager: NSObject, WebSocketDelegate, NSUserNotificationCenterDelegate
     // Given a push JSON object from Pushbullet create a notification
     // Used in mirror and subtype:push
     internal func createNotification(_ msg : JSON) -> NSUserNotification{
-        var push = checkEncryption(msg)                                     // If it's encrypted, decrypt it
+        let push = checkEncryption(msg)                                     // If it's encrypted, decrypt it
         let notification = NSUserNotification()
         if(push == JSON.null || push["dismissed"].boolValue){               // If somenthing went wrong or it's already dismissed
             return notification

@@ -24,7 +24,7 @@ open class Crypt {
     
     func decryptMessage(_ cipher: String) -> String? {
         let rawData = Data(base64Encoded: cipher)
-        var rawBytes = rawData!.toArray()
+        let rawBytes = rawData!.toArray()
         
         let tag = Data(bytes: [UInt8](rawBytes[1...16]))
         let iv = [UInt8](rawBytes[17...28])

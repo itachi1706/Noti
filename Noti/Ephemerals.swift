@@ -46,7 +46,7 @@ class Ephemerals: NSObject {
         
         AF.request("https://api.pushbullet.com/v2/ephemerals", method: .post, parameters: body.dictionaryObject!, encoding: JSONEncoding.default, headers: headers)
             .responseString { response in
-                var result = JSON.init(response.value!)
+                let result = JSON.init(response.value!)
                 if(response.response?.statusCode != 200) {
                     
                     let alert = NSAlert()
