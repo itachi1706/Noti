@@ -99,13 +99,13 @@ class PushManager: NSObject, WebSocketDelegate, NSUserNotificationCenterDelegate
         //todo: this is kinda dirty ...
         self._callback = callback
         
-        let headers = [
+        let headers: HTTPHeaders = [
             "Access-Token": token
         ];
         
-        Alamofire.request("https://api.pushbullet.com/v2/users/me", headers: headers)
+        AF.request("https://api.pushbullet.com/v2/users/me", headers: headers)
             .responseString { response in
-                if let info = response.result.value {
+                if let info = response.value {
                     debugPrint(info)
                     self.userInfo = JSON(parseJSON:info)
                     
@@ -119,7 +119,7 @@ class PushManager: NSObject, WebSocketDelegate, NSUserNotificationCenterDelegate
                         }
                     }
                     
-                } else if response.result.error != nil {
+                } else if response.error != nil {
                     log.error("response error requesting user info")
                     if callback == nil {
                         self.disconnect(attemptReconnect:false)
@@ -169,9 +169,9 @@ class PushManager: NSObject, WebSocketDelegate, NSUserNotificationCenterDelegate
                 }
                 handleNotification(notification)
                 
-                Alamofire.request("https://update.pushbullet.com/android_mapping.json")
+                AF.request("https://update.pushbullet.com/android_mapping.json")
                     .responseString { response in
-                        if let result = response.result.value {
+                        if let result = response.value {
                             let mapping = JSON(parseJSON:result)
                             
                             var indexToBeRemoved = -1, i = -1;
@@ -275,9 +275,9 @@ class PushManager: NSObject, WebSocketDelegate, NSUserNotificationCenterDelegate
     
     func websocketDidConnect(socket: WebSocketClient) {
         if let photo = self.userInfo!["image_url"].string {
-            Alamofire.request(photo)
+            AF.request(photo)
                 .responseData { response in
-                    self.setState("Logged in as: " + self.userInfo!["name"].string!, image: NSImage(data: response.result.value!), disabled: false)
+                    self.setState("Logged in as: " + self.userInfo!["name"].string!, image: NSImage(data: response.value!), disabled: false)
             }
         } else {
             self.setState("Logged in as: " + self.userInfo!["name"].string!, disabled: false)
@@ -332,9 +332,9 @@ class PushManager: NSObject, WebSocketDelegate, NSUserNotificationCenterDelegate
                         // When you receive a tickle message, it means that a resource of the type push has changed.
                         // Request only the latest push: In this case can be a file, a link or just a simple note
                         log.debug("TICKLE -> push")
-                        Alamofire.request("https://api.pushbullet.com/v2/pushes?limit=1", headers: ["Access-Token": token])
+                        AF.request("https://api.pushbullet.com/v2/pushes?limit=1", headers: ["Access-Token": token])
                             .responseString { response in
-                                if let result = response.result.value {
+                                if let result = response.value {
                                     let push = JSON(parseJSON:result)["pushes"][0]    // get ["pushes"][latest] array
                                     self.pushHistory.append(push)
                                     self.center.deliver(self.createNotification(push))
@@ -391,9 +391,9 @@ class PushManager: NSObject, WebSocketDelegate, NSUserNotificationCenterDelegate
                                 notification.soundName = "Glass"
                                 
                                 if let photo = sms["image_url"].string {
-                                    Alamofire.request(photo)
+                                    AF.request(photo)
                                         .responseData { response in
-                                            notification.setValue(NSImage(data: response.result.value!), forKey: "_identityImage")
+                                            notification.setValue(NSImage(data: response.value!), forKey: "_identityImage")
                                             self.center.deliver(notification)
                                     }
                                 } else {

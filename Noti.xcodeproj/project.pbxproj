@@ -21,6 +21,7 @@
 		49B43B131D1ADFB200A24585 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49B43B111D1ADFB200A24585 /* Main.storyboard */; };
 		49B43B1B1D1AE0F200A24585 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 49B43B1A1D1AE0F200A24585 /* Podfile */; };
 		88A7D2B206D28015A6F1B7EC /* Pods_Noti.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8202CC52C8B41C7E049050DE /* Pods_Noti.framework */; };
+		9F7164E1253F3833002AA85C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9F7164E0253F3833002AA85C /* Alamofire */; };
 		9F878E17253F32360068E4C9 /* SwCrypt in Frameworks */ = {isa = PBXBuildFile; productRef = 9F878E16253F32360068E4C9 /* SwCrypt */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F7164E1253F3833002AA85C /* Alamofire in Frameworks */,
 				88A7D2B206D28015A6F1B7EC /* Pods_Noti.framework in Frameworks */,
 				9F878E17253F32360068E4C9 /* SwCrypt in Frameworks */,
 			);
@@ -138,6 +140,7 @@
 			name = Noti;
 			packageProductDependencies = (
 				9F878E16253F32360068E4C9 /* SwCrypt */,
+				9F7164E0253F3833002AA85C /* Alamofire */,
 			);
 			productName = Noti;
 			productReference = 49B43B081D1ADFB200A24585 /* Noti.app */;
@@ -172,6 +175,7 @@
 			mainGroup = 49B43AFF1D1ADFB100A24585;
 			packageReferences = (
 				9F878E15253F32360068E4C9 /* XCRemoteSwiftPackageReference "SwCrypt" */,
+				9F7164DF253F3833002AA85C /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 49B43B091D1ADFB200A24585 /* Products */;
 			projectDirPath = "";
@@ -390,7 +394,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SwCrypt/build/Debug",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = io.jari.Noti;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -419,7 +423,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SwCrypt/build/Debug",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = io.jari.Noti;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -451,6 +455,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		9F7164DF253F3833002AA85C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.3.0;
+			};
+		};
 		9F878E15253F32360068E4C9 /* XCRemoteSwiftPackageReference "SwCrypt" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/soyersoyer/SwCrypt";
@@ -462,6 +474,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9F7164E0253F3833002AA85C /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F7164DF253F3833002AA85C /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		9F878E16253F32360068E4C9 /* SwCrypt */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9F878E15253F32360068E4C9 /* XCRemoteSwiftPackageReference "SwCrypt" */;

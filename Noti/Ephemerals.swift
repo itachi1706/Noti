@@ -44,9 +44,9 @@ class Ephemerals: NSObject {
         debugPrint(body)
         print("----------------------")
         
-        Alamofire.request("https://api.pushbullet.com/v2/ephemerals", method: .post, parameters: body.dictionaryObject!, encoding: JSONEncoding.default, headers: headers)
+        AF.request("https://api.pushbullet.com/v2/ephemerals", method: .post, parameters: body.dictionaryObject!, encoding: JSONEncoding.default, headers: headers)
             .responseString { response in
-                var result = JSON.init(response.result.value!)
+                var result = JSON.init(response.value!)
                 if(response.response?.statusCode != 200) {
                     
                     let alert = NSAlert()
@@ -81,7 +81,7 @@ class Ephemerals: NSObject {
             return
         }
         
-        let headers = [
+        let headers: HTTPHeaders = [
             "Authorization": "Bearer " + APIkey
         ];
         
@@ -90,10 +90,10 @@ class Ephemerals: NSObject {
             "key": source_device_iden + "_threads"
         ]
         
-        Alamofire.request("https://api.pushbullet.com/v3/get-permanent", method: .post, parameters: body.dictionaryObject!, encoding: JSONEncoding.default, headers: headers)
+        AF.request("https://api.pushbullet.com/v3/get-permanent", method: .post, parameters: body.dictionaryObject!, encoding: JSONEncoding.default, headers: headers)
             .responseString { response in
                 debugPrint(response)
-                var parsed = JSON.init(response.result.value!)
+                var parsed = JSON.init(response.value!)
                 
                 //decrypt if needed....
                 if self.crypt != nil && parsed["data"]["encrypted"].exists() {
