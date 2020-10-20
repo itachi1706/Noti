@@ -21,7 +21,7 @@
 		49B43B131D1ADFB200A24585 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49B43B111D1ADFB200A24585 /* Main.storyboard */; };
 		49B43B1B1D1AE0F200A24585 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 49B43B1A1D1AE0F200A24585 /* Podfile */; };
 		88A7D2B206D28015A6F1B7EC /* Pods_Noti.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8202CC52C8B41C7E049050DE /* Pods_Noti.framework */; };
-		9F878E17253F32360068E4C9 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 9F878E16253F32360068E4C9 /* SwiftPackageProductDependency */; };
+		9F878E17253F32360068E4C9 /* SwCrypt in Frameworks */ = {isa = PBXBuildFile; productRef = 9F878E16253F32360068E4C9 /* SwCrypt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +53,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88A7D2B206D28015A6F1B7EC /* Pods_Noti.framework in Frameworks */,
-				9F878E17253F32360068E4C9 /* BuildFile in Frameworks */,
+				9F878E17253F32360068E4C9 /* SwCrypt in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,7 +137,7 @@
 			);
 			name = Noti;
 			packageProductDependencies = (
-				9F878E16253F32360068E4C9 /* SwiftPackageProductDependency */,
+				9F878E16253F32360068E4C9 /* SwCrypt */,
 			);
 			productName = Noti;
 			productReference = 49B43B081D1ADFB200A24585 /* Noti.app */;
@@ -155,7 +155,7 @@
 				TargetAttributes = {
 					49B43B071D1ADFB200A24585 = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0910;
+						LastSwiftMigration = 1200;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -171,7 +171,7 @@
 			);
 			mainGroup = 49B43AFF1D1ADFB100A24585;
 			packageReferences = (
-				9F878E15253F32360068E4C9 /* RemoteSwiftPackageReference */,
+				9F878E15253F32360068E4C9 /* XCRemoteSwiftPackageReference "SwCrypt" */,
 			);
 			productRefGroup = 49B43B091D1ADFB200A24585 /* Products */;
 			projectDirPath = "";
@@ -394,7 +394,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.jari.Noti;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -423,7 +423,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.jari.Noti;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -451,7 +451,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9F878E15253F32360068E4C9 /* RemoteSwiftPackageReference */ = {
+		9F878E15253F32360068E4C9 /* XCRemoteSwiftPackageReference "SwCrypt" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/soyersoyer/SwCrypt";
 			requirement = {
@@ -462,9 +462,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9F878E16253F32360068E4C9 /* SwiftPackageProductDependency */ = {
+		9F878E16253F32360068E4C9 /* SwCrypt */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9F878E15253F32360068E4C9 /* RemoteSwiftPackageReference */;
+			package = 9F878E15253F32360068E4C9 /* XCRemoteSwiftPackageReference "SwCrypt" */;
 			productName = SwCrypt;
 		};
 /* End XCSwiftPackageProductDependency section */
