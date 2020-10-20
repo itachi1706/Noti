@@ -389,13 +389,23 @@ class PushManager: NSObject, WebSocketDelegate, NSUserNotificationCenterDelegate
                     switch(pushType) {
                     case "mirror":
                         log.debug("PUSH -> mirror")
-                        center.deliver(createNotification(push))
+                        let n = createNotification(push)
+                        
+                        for not in center.deliveredNotifications {
+                            if not.identifier == n.identifier {
+                                center.removeDeliveredNotification(not)
+                                print("Refeshing notification with identifier", n.identifier!)
+                            }
+                        }
+                        
+                        center.deliver(n)
                         break;
                     case "dismissal":
                         //loop through current user notifications, if identifier matches, remove it
                         log.debug("PUSH -> dismiss")
+                        let pushid = push["package_name"].string! + ":" + push["notification_id"].string!
                         for noti in center.deliveredNotifications {
-                            if noti.identifier == push["notification_id"].string {
+                            if noti.identifier == pushid {
                                 center.removeDeliveredNotification(noti)
                                 print("Removed a noti (", noti.identifier!, ")")
                             }
@@ -470,20 +480,24 @@ class PushManager: NSObject, WebSocketDelegate, NSUserNotificationCenterDelegate
                 notification.title = "Url"                                  // We have no title here
                 notification.informativeText = push["url"].string
                 notification.identifier = "noti_url" + push["iden"].string!     // We need to recognize it after user pressed
+                print("UserNotif", "link", notification.identifier!)
             case "file" :                                                   // Special type of Noti: file type
                 notification.title = push["file_name"].string               // Using the file name as title
                 notification.informativeText = push["image_url"].string     // and file type as description
                 notification.identifier = "noti_file" + push["iden"].string!
+                print("UserNotif", "file", notification.identifier!)
             case "note" :                                                   // Special type of Noti: note (seems like a self message)
                 notification.title = push["sender_name"].string
                 notification.informativeText = push["body"].string
                 notification.identifier = "noti_note" + push["iden"].string!
                 notification.actionButtonTitle = "Dismiss"
+                print("UserNotif", "note", notification.identifier!)
             default :                                                       // Default: all other Noty
                 notification.title = push["title"].string
                 notification.informativeText = push["body"].string
                 notification.otherButtonTitle = "Dismiss    "
-                notification.identifier = push["notification_id"].string
+                notification.identifier = push["package_name"].string! + ":" + push["notification_id"].string!
+                print("UserNotif", "others", notification.identifier!)
             }
         }
         let omitAppNameDefaultExists = userDefaults.object(forKey: "omitAppName") != nil
