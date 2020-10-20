@@ -4,9 +4,8 @@ PODS:
   - EMCLoginItem (1.0.1)
   - Sparkle (1.14.0)
   - Starscream (3.0.3)
-  - SwCrypt (4.0.0)
   - SwiftyBeaver (1.5.0)
-  - SwiftyJSON (3.1.4)
+  - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0.1)
@@ -14,12 +13,11 @@ DEPENDENCIES:
   - EMCLoginItem (~> 1.0.1)
   - Sparkle (~> 1.14.0)
   - Starscream (~> 3.0.2)
-  - SwCrypt (= 4.0.0)
   - SwiftyBeaver
-  - SwiftyJSON (~> 3.1.1)
+  - SwiftyJSON (~> 5.0.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Alamofire
     - CryptoSwift
     - EMCLoginItem
@@ -27,8 +25,6 @@ SPEC REPOS:
     - Starscream
     - SwiftyBeaver
     - SwiftyJSON
-  https://github.com/jariz/Noti-Spec.git:
-    - SwCrypt
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
@@ -36,10 +32,9 @@ SPEC CHECKSUMS:
   EMCLoginItem: ac4a198cda3f4a8dc72797d2e89ad6c640624835
   Sparkle: ccd95233b12a3e3d4eeb55ff01dd4c8bb8188b07
   Starscream: dfb1b3f39506717ee52b67fb48de0c8269504cbc
-  SwCrypt: 107e7a971662bd10212a696354f943b127de371d
   SwiftyBeaver: 384235c59d9c67b4a5e1810cffa713babba34efd
-  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 7481dc9ca87f0ae2c2cf3cd704c80fb346debf7e
+PODFILE CHECKSUM: a28ca53b9659d96cd8758099617de990ada4905e
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.9.3
