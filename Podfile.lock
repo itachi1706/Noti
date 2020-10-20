@@ -1,36 +1,24 @@
 PODS:
-  - CryptoSwift (0.8.3)
   - EMCLoginItem (1.0.2)
   - Sparkle (1.14.0)
-  - Starscream (3.0.6)
   - SwiftyBeaver (1.9.2)
-  - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
-  - CryptoSwift (~> 0.8.0)
   - EMCLoginItem (~> 1.0.1)
   - Sparkle (~> 1.14.0)
-  - Starscream (~> 3.0.2)
   - SwiftyBeaver
-  - SwiftyJSON (~> 5.0.0)
 
 SPEC REPOS:
   trunk:
-    - CryptoSwift
     - EMCLoginItem
     - Sparkle
-    - Starscream
     - SwiftyBeaver
-    - SwiftyJSON
 
 SPEC CHECKSUMS:
-  CryptoSwift: 033efc3523865d19cc6ab6612fa17a62613b5dfa
   EMCLoginItem: 19d3c7eca477c9019ea0cd58e44d0ccd34a7a6a3
   Sparkle: ccd95233b12a3e3d4eeb55ff01dd4c8bb8188b07
-  Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
   SwiftyBeaver: b8239f6bfe9e1ea3303e6139abc8c24228081d84
-  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 5e906e8ea906cec735724c1bb7219306ae0cbd8f
+PODFILE CHECKSUM: 3bf63c924f776e41a21d3dc668a217115a10dd23
 
 COCOAPODS: 1.9.3

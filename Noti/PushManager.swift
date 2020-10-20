@@ -12,6 +12,7 @@ import Foundation
 import Starscream
 import SwiftyJSON
 import Alamofire
+import AppKit
 
 class PushManager: NSObject, WebSocketDelegate, NSUserNotificationCenterDelegate {
     
@@ -26,13 +27,16 @@ class PushManager: NSObject, WebSocketDelegate, NSUserNotificationCenterDelegate
     let userDefaults = UserDefaults.standard
     var userState: String
     var nopTimer : Timer
+    var isConnected: Bool
     
     init(token: String) {
         self.token = token
-        self.socket = WebSocket(url: URL(string: "wss://stream.pushbullet.com/websocket/" + token)!)
+        let request = URLRequest(url: URL(string: "wss://stream.pushbullet.com/websocket/" + token)!)
+        self.socket = WebSocket(request: request)
         self.ephemerals = Ephemerals(token: token);
         self.userState = "Initializing..."
         self.nopTimer = Timer()
+        self.isConnected = false
         super.init()
         
         center.delegate = self
@@ -54,15 +58,15 @@ class PushManager: NSObject, WebSocketDelegate, NSUserNotificationCenterDelegate
     }
     
     @objc internal func disconnect(attemptReconnect: Bool = true) {
-        log.warning("Triggered disconnect attemptReconnect:\(attemptReconnect), isConnected:\(self.socket!.isConnected)")
+        log.warning("Triggered disconnect attemptReconnect:\(attemptReconnect), isConnected:\(self.isConnected)")
         //stops attempts to reconnect
         if !attemptReconnect {
             self.killed = true
         }
         
         //disconnect now!
-        if self.socket!.isConnected {
-            self.socket!.disconnect(forceTimeout: 0)
+        if self.isConnected {
+            self.socket!.disconnect()
         }
     }
     
@@ -310,6 +314,40 @@ class PushManager: NSObject, WebSocketDelegate, NSUserNotificationCenterDelegate
         let iden = userInfo!["iden"].string!
         let key = Crypt.generateKey(password, salt: iden)
         userDefaults.set(key, forKey: "secureKey")
+    }
+    
+    func didReceive(event: WebSocketEvent, client: WebSocket) {
+        switch event {
+        case .connected(let headers):
+            self.isConnected = true
+            websocketDidConnect(socket: client)
+            print("PushManagerWS", "connect", headers)
+        case .disconnected(let reason, let code):
+            self.isConnected = false
+            websocketDidDisconnect(socket: client, error: nil)
+            print("PushManagerWS", "disconnect", reason, "with code", code)
+        case .text(let string):
+            websocketDidReceiveMessage(socket: client, text: string)
+        case .binary(let data):
+            websocketDidReceiveData(socket: client, data: data)
+        case .pong(_):
+            break
+        case .ping(_):
+            break
+        case .error(let error):
+            isConnected = false
+            websocketDidDisconnect(socket: client, error: error)
+            print("PushManagerWS", "error", error)
+            //self.isConnected = false
+        case .viabilityChanged(_):
+            break
+        case .reconnectSuggested(_):
+            break
+        case .cancelled:
+            print("PushManageWS", "Cancelled")
+            websocketDidDisconnect(socket: client, error: nil)
+            self.isConnected = false
+        }
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
