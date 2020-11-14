@@ -32,16 +32,4 @@ jobs:
         with:
           name: macOS-App
           path: out
-          
-      - name: (TEST) Find the .app file in Current Working Dir
-        run: |
-          find . -type d -iname "*.app"
-          
-      - name: (TEST) Find the .app file in User Dir
-        run: |
-          find ~ -type d -iname "*.app"
-          
-      - name: (TEST) Find the .app file in Root Applications folder
-        run: |
-          find /Applications -type d -iname "*.app"
         
