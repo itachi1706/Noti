@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   build:
-    name: Build and Test default scheme using any available iPhone simulator
+    name: Build and Test macOS App
     runs-on: macos-latest
 
     steps:
@@ -20,4 +20,5 @@ jobs:
         with:
           workspace: Noti.xcworkspace
           scheme: Noti
+          action: build
         
