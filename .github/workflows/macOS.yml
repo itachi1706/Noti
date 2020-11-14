@@ -1,0 +1,23 @@
+name: Build macOS App
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Build and Test default scheme using any available iPhone simulator
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Run Pod Update
+        run: |
+          pod update
+        
+      - name: Run XCode Build
+        uses: sersoft-gmbh/xcodebuild-action@v1.3
+        with:
+          workspace: Noti.xcworkspace
+          scheme: Noti
+        
