@@ -22,6 +22,16 @@ jobs:
           scheme: Noti
           action: build
           
+      - name: Copy app file to root
+        run: |
+          cp -R ~/Library/Developer/Xcode/DerivedData/Noti-*/Build/Products/Debug/Noti.app .
+          
+      - uses: actions/upload-artifact@v2
+        name: Save built macOS App as Artifact
+        with:
+          name: macOS-App
+          path: Noti.app
+          
       - name: (TEST) Find the .app file in Current Working Dir
         run: |
           find . -type d -iname "*.app"
