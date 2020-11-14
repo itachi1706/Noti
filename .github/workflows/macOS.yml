@@ -1,0 +1,35 @@
+name: Build macOS App
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Build and Test macOS App
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Run Pod Update
+        run: |
+          pod update
+        
+      - name: Run XCode Build
+        uses: sersoft-gmbh/xcodebuild-action@v1.3
+        with:
+          workspace: Noti.xcworkspace
+          scheme: Noti
+          action: build
+          
+      - name: Copy app file to root
+        run: |
+          mkdir out
+          cp -R ~/Library/Developer/Xcode/DerivedData/Noti-*/Build/Products/Debug/Noti.app ./out
+          
+      - uses: actions/upload-artifact@v2
+        name: Save built macOS App as Artifact
+        with:
+          name: macOS-App
+          path: out
+        
