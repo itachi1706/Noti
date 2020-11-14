@@ -21,4 +21,8 @@ jobs:
           workspace: Noti.xcworkspace
           scheme: Noti
           action: build
+          
+      - name: [TEST] Find the .app file
+        run: |
+          find . -type f -iname "*.app"
         
