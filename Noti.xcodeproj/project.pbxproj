@@ -174,10 +174,9 @@
 			};
 			buildConfigurationList = 49B43B031D1ADFB200A24585 /* Build configuration list for PBXProject "Noti" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);

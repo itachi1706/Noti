@@ -233,13 +233,13 @@ class PushManager: NSObject, WebSocketDelegate, NSUserNotificationCenterDelegate
                 //determine if we replied to a sms or a normal notification
                 if (notification.identifier?.count)! > 4 {
                     let index = notification.identifier?.index((notification.identifier?.startIndex)!, offsetBy: 4)
-                    if notification.identifier?.substring(to: index!) == "sms_" {
+                    if String(notification.identifier?[..<index!] ?? "") == "sms_" {
                         var indexToBeRemoved = -1, i = -1;
                         for item in pushHistory {
                             i += 1;
                             if item["type"].string == "sms_changed" {
-                                let metadata = notification.identifier?.substring(from: index!).components(separatedBy: "|")
-                                let thread_id = metadata![1], source_device_iden = metadata![0], timestamp = metadata![2]
+                                let metadata = String(notification.identifier?[index!...] ?? "").components(separatedBy: "|")
+                                let thread_id = metadata[1], source_device_iden = metadata[0], timestamp = metadata[2]
                                 
                                 for (_, sms):(String, JSON) in item["notifications"] {
                                     if(sms["thread_id"].string! == thread_id && String(sms["timestamp"].int!) == timestamp) {
@@ -337,7 +337,7 @@ class PushManager: NSObject, WebSocketDelegate, NSUserNotificationCenterDelegate
         case .error(let error):
             isConnected = false
             websocketDidDisconnect(socket: client, error: error)
-            print("PushManagerWS", "error", error)
+            print("PushManagerWS", "error", error ?? "Unknown Error")
             //self.isConnected = false
         case .viabilityChanged(_):
             break

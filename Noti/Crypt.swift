@@ -26,11 +26,11 @@ open class Crypt {
         let rawData = Data(base64Encoded: cipher)
         let rawBytes = rawData!.toArray()
         
-        let tag = Data(bytes: [UInt8](rawBytes[1...16]))
+        let tag = Data([UInt8](rawBytes[1...16]))
         let iv = [UInt8](rawBytes[17...28])
         let message = [UInt8](rawBytes[29..<rawBytes.count])
         
-        let res = try? CC.GCM.crypt(.decrypt, algorithm: .aes, data: Data(bytes: message), key: Data(bytes: key), iv: Data(bytes: iv), aData: Data(), tagLength: 16)
+        let res = try? CC.GCM.crypt(.decrypt, algorithm: .aes, data: Data(message), key: Data(key), iv: Data(iv), aData: Data(), tagLength: 16)
         if res == nil {
             return nil
         } else {
@@ -46,7 +46,7 @@ open class Crypt {
     func encryptMessage(message: String) -> String? {
         let iv = CC.generateRandom(12)
         let messageData = message.data(using: String.Encoding.utf8)!
-        let res = try? CC.GCM.crypt(CC.OpMode.encrypt, algorithm: .aes, data: messageData, key: Data(bytes: key), iv: iv, aData: Data(), tagLength: 16)
+        let res = try? CC.GCM.crypt(CC.OpMode.encrypt, algorithm: .aes, data: messageData, key: Data(key), iv: iv, aData: Data(), tagLength: 16)
         if res == nil {
             return nil
         }

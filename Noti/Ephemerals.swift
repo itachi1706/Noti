@@ -62,7 +62,7 @@ class Ephemerals: NSObject {
     }
     
     func respondToSMS(_ message: String!, thread_id: String!, source_device_iden: String!, source_user_iden: String!) {
-        print("respondToSMS", "message", message, "thread_id", thread_id, "source_device_iden", source_device_iden)
+        print("respondToSMS", "message", message ?? "Unknown", "thread_id", thread_id ?? "-", "source_device_iden", source_device_iden ?? "-")
         
         //get api key from cookies
         var APIkey:String = ""
