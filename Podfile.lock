@@ -1,24 +1,20 @@
 PODS:
   - EMCLoginItem (1.0.2)
-  - Sparkle (1.14.0)
-  - SwiftyBeaver (1.9.2)
+  - Sparkle (1.24.0)
 
 DEPENDENCIES:
   - EMCLoginItem (~> 1.0.1)
-  - Sparkle (~> 1.14.0)
-  - SwiftyBeaver
+  - Sparkle (~> 1.24.0)
 
 SPEC REPOS:
   trunk:
     - EMCLoginItem
     - Sparkle
-    - SwiftyBeaver
 
 SPEC CHECKSUMS:
   EMCLoginItem: 19d3c7eca477c9019ea0cd58e44d0ccd34a7a6a3
-  Sparkle: ccd95233b12a3e3d4eeb55ff01dd4c8bb8188b07
-  SwiftyBeaver: b8239f6bfe9e1ea3303e6139abc8c24228081d84
+  Sparkle: 270cd27377bf04e9c128af06e3a22d0f572d6ee3
 
-PODFILE CHECKSUM: 3bf63c924f776e41a21d3dc668a217115a10dd23
+PODFILE CHECKSUM: f0cae18c86d07ee5c71a147e71b6a71534030fa9
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0
