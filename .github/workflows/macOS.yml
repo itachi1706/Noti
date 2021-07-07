@@ -16,7 +16,7 @@ jobs:
           pod update
         
       - name: Run XCode Build
-        uses: sersoft-gmbh/xcodebuild-action@v1.3
+        uses: sersoft-gmbh/xcodebuild-action@v1.5
         with:
           workspace: Noti.xcworkspace
           scheme: Noti
